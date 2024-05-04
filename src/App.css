@@ -7,6 +7,42 @@
   pointer-events: none;
 }
 
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  padding: 0;
+}
+
+#trades-table-header {
+  padding: 1em 0;
+}
+
+.table-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell-trade-id {
+  width: 150px;
+}
+
+.cell-price {
+  width: 140px;
+}
+
+.cell-quantity {
+  width: 170px;
+}
+
+.cell-time {
+  width: 150px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
