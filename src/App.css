@@ -18,8 +18,22 @@ li {
   padding: 0;
 }
 
+#trades-table {
+  width: 500px;
+}
+
 #trades-table-header {
   padding: 1em 0;
+}
+
+.table-cell {
+  /* width: 100%; */
+  text-align: left;
+}
+
+.table-cell {
+  text-align: left;
+  width: 25%;
 }
 
 .table-row {
@@ -36,7 +50,7 @@ li {
 }
 
 .table-cell-trade-id {
-  width: 150px;
+  width: 140px;
 }
 
 .table-cell-price {
@@ -44,11 +58,11 @@ li {
 }
 
 .table-cell-quantity {
-  width: 140px;
+  width: 100px;
 }
 
 .table-cell-time {
-  width: 150px;
+  /* width: 70px; */
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -1,4 +1,4 @@
-import { mockRawTrades } from "../mock-trades"
+import { mockRawTrades } from "../__mocks__/mock-trades"
 import { getFormattedTimeString, getTransformedTradeItem } from "./helpers";
 import { TransformedTradeItem } from "./types";
 

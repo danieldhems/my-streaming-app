@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import TradesTable from './trades-table';
-import { mockRawTrades } from "../mock-trades.js";
+import { mockRawTrades } from "../__mocks__/mock-trades.js";
 
 describe("Trades table", () => {
     beforeEach(() => {

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { mockRawTrades } from "../mock-trades.js";
+import { mockRawTrades } from "../__mocks__/mock-trades.js";
 import TradeItem from './trade-item';
 
 describe("Trade item", () => {

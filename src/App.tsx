@@ -2,11 +2,14 @@ import { useCallback, useEffect, useState } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import './App.css';
 import TradesTable from './trades-table';
-import { RawTradeItem } from './types';
+import { InstrumentPairs, RawTradeItem } from './types';
+import InstrumentSelectField from './instrument-select-field';
 
 function App() {
-  //Public API that will echo messages sent to it back to the client
-  const [socketUrl, setSocketUrl] = useState('wss://stream.binance.com:9443/ws/bnbbtc@trade');
+  const [currentInstrumentPair, setInstrumentPair] = useState(InstrumentPairs.BNBBTC);
+
+  const [socketUrl, setSocketUrl] = useState("wss://stream.binance.com:9443/ws/" + currentInstrumentPair.toLowerCase() + "@trade");
+
   const [messageHistory, setMessageHistory] = useState<RawTradeItem[]>([]);
 
   const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
@@ -20,13 +23,14 @@ function App() {
     }
   }, [lastMessage]);
 
-  // TODO: Support requesting different instrument pair for websocket stream.
-  const handleClickChangeSocketUrl = useCallback(
-    () => setSocketUrl(''),
+  const onInstrumentPairChange = useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const newInstrumentPair = event.target.value;
+      setSocketUrl("wss://stream.binance.com:9443/ws/" + newInstrumentPair.toLowerCase() + "@trade")
+      setInstrumentPair(newInstrumentPair as InstrumentPairs);
+    },
     []
   );
-
-  const handleClickSendMessage = useCallback(() => sendMessage('Hello'), []);
 
   const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
@@ -38,19 +42,10 @@ function App() {
 
   return (
     <div>
-      <button onClick={handleClickChangeSocketUrl}>
-        Click Me to change Socket Url
-      </button>
-      <button
-        onClick={handleClickSendMessage}
-
-        disabled={readyState !== ReadyState.OPEN}
-      >
-        Click Me to send 'Hello'
-      </button>
-      <span>The WebSocket is currently {connectionStatus}</span>
+      <p>The WebSocket is currently {connectionStatus}</p>
       {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
-      <h2>Latest trades</h2>
+      <InstrumentSelectField onChangeCallback={onInstrumentPairChange}></InstrumentSelectField>
+      <h2>Latest trades for instrument pair: {currentInstrumentPair}</h2>
       <TradesTable trades={messageHistory}></TradesTable>
     </div>
   );
