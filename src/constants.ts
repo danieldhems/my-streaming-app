@@ -1,0 +1,1 @@
+export const MAX_TRADES_TO_DISPLAY = 50;

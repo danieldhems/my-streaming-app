@@ -27,19 +27,27 @@ li {
   flex-direction: row;
 }
 
-.cell-trade-id {
+#trades-table-body .table-row:hover {
+  background-color: #c7c7c7;
+}
+
+#trades-table-body .table-cell {
+  padding: .2em 0 .1em;
+}
+
+.table-cell-trade-id {
   width: 150px;
 }
 
-.cell-price {
+.table-cell-price {
   width: 140px;
 }
 
-.cell-quantity {
-  width: 170px;
+.table-cell-quantity {
+  width: 140px;
 }
 
-.cell-time {
+.table-cell-time {
   width: 150px;
 }
 

@@ -1,9 +1,22 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe("My trading app", () => {
+  beforeEach(() => {
+    render(<App />);
+  })
+
+  describe("Binance websocket", () => {
+    describe("When component loads", () => {
+      test("Should open a connection and display the connection status", () => {
+
+      })
+    })
+  })
+
+  describe("Latest trades header text", () => {
+    test("Should render", () => {
+      expect(screen.getByText(/Latest trades/i)).toBeInTheDocument();
+    })
+  })
+})

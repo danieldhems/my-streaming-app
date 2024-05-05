@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
-import logo from './logo.svg';
 import './App.css';
-import TradeItem, { RawTradeItem } from './trade-item';
+import TradesTable from './trades-table';
+import { RawTradeItem } from './types';
 
 function App() {
   //Public API that will echo messages sent to it back to the client
@@ -51,29 +51,7 @@ function App() {
       <span>The WebSocket is currently {connectionStatus}</span>
       {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
       <h2>Latest trades</h2>
-      <div id="trades-table">
-        <div id="trades-table-header" className="table-row">
-          <div className="table-header-cell cell-trade-id">
-            <label>Trade ID</label>
-          </div>
-          <div className="table-header-cell cell-price">
-            <label>Price</label>
-          </div>
-          <div className="table-header-cell cell-quantity">
-            <label>Quantity</label>
-          </div>
-          <div className="table-header-cell cell-time">
-            <label>Time</label>
-          </div>
-        </div>
-        <div id="trades-table-body">
-          <ul>
-            {messageHistory.map((message, index) => (
-              <TradeItem tradeItemData={message} key={index}></TradeItem>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <TradesTable trades={messageHistory}></TradesTable>
     </div>
   );
 }
