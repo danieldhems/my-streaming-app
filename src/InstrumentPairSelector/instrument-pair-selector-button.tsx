@@ -11,10 +11,7 @@ export default function InstrumentPairSelectorButton(props: InstrumentPairSelect
     const { instrumentPair, currentInstrumentPair, onClickCallback } = props;
     return (
         <div
-            className={
-                `selector-button
-                ${instrumentPair === currentInstrumentPair ? "active" : ""}`
-            }
+            className="selector-button"
             data-testid="instrument-pair-selector-button-container"
         >
             <button
