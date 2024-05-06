@@ -1,5 +1,6 @@
 import { mockRawTrades } from "../__mocks__/mock-trades"
-import { getFormattedTimeString, getTransformedTradeItem } from "./helpers";
+import { INSTRUMENT_PAIR_LABEL_SEPERATOR } from "./constants";
+import { getFormattedTimeString, getInstrumentPairLabel, getTransformedTradeItem } from "./helpers";
 import { TransformedTradeItem } from "./types";
 
 describe("Helpers", () => {
@@ -21,6 +22,12 @@ describe("Helpers", () => {
             const input = 1714911713;
             const expected = "21:21:51";
             expect(getFormattedTimeString(input)).toBe<string>(expected);
+        })
+    })
+
+    describe("getInstrumentPairLabel", () => {
+        test("Should insert a separator into the string provided and return it", () => {
+            expect(getInstrumentPairLabel("BNBBTC")).toBe("BNB" + INSTRUMENT_PAIR_LABEL_SEPERATOR + "BTC")
         })
     })
 })

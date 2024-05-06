@@ -1,3 +1,4 @@
+import { INSTRUMENT_PAIR_LABEL_SEPERATOR } from "./constants";
 import { RawTradeItem, TransformedTradeItem } from "./types";
 
 /**
@@ -29,3 +30,7 @@ export function getFormattedTimeString(timestamp: number): string {
 
     return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
 }
+
+export const getInstrumentPairLabel = (instrumentPairString: string): string  =>[instrumentPairString.slice(0, 3), INSTRUMENT_PAIR_LABEL_SEPERATOR, instrumentPairString.slice(3, )].join("");
+
+export const sanitiseInstrumentPairLabel = (instrumentPairString: string): string => instrumentPairString.replace(INSTRUMENT_PAIR_LABEL_SEPERATOR, "");

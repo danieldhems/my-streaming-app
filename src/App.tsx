@@ -3,7 +3,8 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 import './App.css';
 import TradesTable from './trades-table';
 import { InstrumentPairs, RawTradeItem } from './types';
-import InstrumentSelectField from './instrument-select-field';
+import InstrumentPairSelector from './InstrumentPairSelector/instrument-pair-selector';
+import { getInstrumentPairLabel, sanitiseInstrumentPairLabel } from './helpers';
 
 function App() {
   const [currentInstrumentPair, setInstrumentPair] = useState(InstrumentPairs.BNBBTC);
@@ -24,10 +25,10 @@ function App() {
   }, [lastMessage]);
 
   const onInstrumentPairChange = useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>) => {
-      const newInstrumentPair = event.target.value;
-      setSocketUrl("wss://stream.binance.com:9443/ws/" + newInstrumentPair.toLowerCase() + "@trade")
-      setInstrumentPair(newInstrumentPair as InstrumentPairs);
+    (instrumentPairName: string) => {
+      const sanitisedInstrumentPair = sanitiseInstrumentPairLabel(instrumentPairName);
+      setSocketUrl("wss://stream.binance.com:9443/ws/" + sanitisedInstrumentPair.toLowerCase() + "@trade")
+      setInstrumentPair(sanitisedInstrumentPair as InstrumentPairs);
     },
     []
   );
@@ -42,10 +43,10 @@ function App() {
 
   return (
     <div>
-      <p>The WebSocket is currently {connectionStatus}</p>
+      <p>The WebSocket is currently {connectionStatus} (Connected to: {socketUrl})</p>
       {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
-      <InstrumentSelectField onChangeCallback={onInstrumentPairChange}></InstrumentSelectField>
-      <h2>Latest trades for instrument pair: {currentInstrumentPair}</h2>
+      <InstrumentPairSelector onClickCallback={onInstrumentPairChange}></InstrumentPairSelector>
+      <h2>Latest trades for instrument pair: {getInstrumentPairLabel(currentInstrumentPair)}</h2>
       <TradesTable trades={messageHistory}></TradesTable>
     </div>
   );

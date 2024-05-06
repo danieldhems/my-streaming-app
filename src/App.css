@@ -65,6 +65,19 @@ li {
   /* width: 70px; */
 }
 
+.selector-button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.selector-button {
+  padding: .5em;
+}
+
+.selector-button.active {
+  background-color: green;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

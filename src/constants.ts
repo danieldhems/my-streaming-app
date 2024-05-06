@@ -1,0 +1,1 @@
+export const INSTRUMENT_PAIR_LABEL_SEPERATOR = "/";
