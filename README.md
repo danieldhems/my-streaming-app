@@ -11,6 +11,8 @@ bit prettier, but I've already spent all weekend on this so I hope this
 is a good enough illustration of what I can do and how I approach
 things.
 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
