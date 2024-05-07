@@ -1,3 +1,5 @@
+As you can see I've used Create React App for this demo as it seemed like a good boilerplate to get started with. I hope my work is satisfactory.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
