@@ -1,3 +1,11 @@
+export enum ConnectionStatus {
+    Connecting = 'Connecting',
+    Open = 'Open',
+    Closing = 'Closing',
+    Closed = 'Closed',
+    Uninstantiated = 'Uninstantiated',
+}
+
 // Interface for the raw trade data
 export type RawTradeItem = {
     e: string;

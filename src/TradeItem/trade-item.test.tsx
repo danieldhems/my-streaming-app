@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import { mockRawTrades } from "../__mocks__/mock-trades.js";
+import { mockRawTrades } from "../../__mocks__/mock-trades.js";
 import TradeItem from './trade-item';
 
 describe("Trade item", () => {
     let tradeItemElement: HTMLElement;
     beforeEach(() => {
         render(<TradeItem tradeItemData={mockRawTrades[0]} />);
-        tradeItemElement = screen.getByRole("trade-item");
+        tradeItemElement = screen.getByTestId("trade-item");
     })
 
     describe("When component loads", () => {

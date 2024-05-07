@@ -3,12 +3,11 @@ import { InstrumentPairs } from "../types";
 
 export interface InstrumentPairSelectorButtonProps {
     instrumentPair: InstrumentPairs,
-    currentInstrumentPair: InstrumentPairs;
     onClickCallback: (event: string) => void;
 }
 
 export default function InstrumentPairSelectorButton(props: InstrumentPairSelectorButtonProps) {
-    const { instrumentPair, currentInstrumentPair, onClickCallback } = props;
+    const { instrumentPair, onClickCallback } = props;
     return (
         <div
             className="selector-button"

@@ -9,7 +9,6 @@ describe("Instrument Pair Selector button", () => {
         render(
             <InstrumentPairSelectorButton
                 instrumentPair={InstrumentPairs.BNBBTC}
-                currentInstrumentPair={InstrumentPairs.BNBBTC}
                 onClickCallback={onSelectorButtonClick}></InstrumentPairSelectorButton>
         )
     })

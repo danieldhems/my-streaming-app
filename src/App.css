@@ -72,6 +72,7 @@ li {
 
 .selector-button {
   padding: .5em;
+  cursor: pointer;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -1,17 +1,14 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { InstrumentPairs } from "../types";
-import InstrumentPairSelectorButton from "./instrument-pair-selector-button";
+import InstrumentPairSelectorButton from "../InstrumentPairSelectorButton/instrument-pair-selector-button";
 
 export interface InstrumentPairSelectorProps {
     onClickCallback: (textValue: string) => void;
 }
 
 export default function InstrumentPairSelector(props: InstrumentPairSelectorProps) {
-    const [currentInstrumentPair, setCurrentInstrumentPair] = useState(InstrumentPairs.BNBBTC)
-
     const onSelectorButtonClick = useCallback((instrumentPair: string) => {
         props.onClickCallback(instrumentPair);
-        setCurrentInstrumentPair(instrumentPair as InstrumentPairs);
     }, [props])
 
     return (
@@ -24,7 +21,6 @@ export default function InstrumentPairSelector(props: InstrumentPairSelectorProp
                     Object.keys(InstrumentPairs).map((instrumentPair: string, index: number) => (
                         <InstrumentPairSelectorButton
                             instrumentPair={instrumentPair as InstrumentPairs}
-                            currentInstrumentPair={currentInstrumentPair}
                             onClickCallback={onSelectorButtonClick}
                             key={index}></InstrumentPairSelectorButton>
                     ))

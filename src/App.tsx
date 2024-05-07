@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import './App.css';
-import TradesTable from './trades-table';
-import { InstrumentPairs, RawTradeItem } from './types';
+import TradesTable from './TradesTable/trades-table';
+import { ConnectionStatus, InstrumentPairs, RawTradeItem } from './types';
 import InstrumentPairSelector from './InstrumentPairSelector/instrument-pair-selector';
 import { getInstrumentPairLabel, sanitiseInstrumentPairLabel } from './helpers';
+import ConnectionStatusInfo from './ConnectionStatusInfo/connection-status-info';
 
 function App() {
   const [currentInstrumentPair, setInstrumentPair] = useState(InstrumentPairs.BNBBTC);
@@ -17,9 +18,12 @@ function App() {
 
   useEffect(() => {
     if (lastMessage !== null) {
-      // Convert raw trade data string to object and prepend to existing message array.
-      // This should keep the newest trades on top in the UI without having to
-      // carry out a potentially expensive sort operation (considering how quickly new messages are likely come in).
+      /**
+       * Convert raw trade data string to object and prepend to existing message array.
+       * This should keep the newest trades on top in the UI without having to 
+       * carry out a potentially expensive sort operation (considering how 
+       * messages are likely come in).
+       */
       setMessageHistory((prev) => [JSON.parse(lastMessage.data)].concat(prev));
     }
   }, [lastMessage]);
@@ -34,19 +38,23 @@ function App() {
   );
 
   const connectionStatus = {
-    [ReadyState.CONNECTING]: 'Connecting',
-    [ReadyState.OPEN]: 'Open',
-    [ReadyState.CLOSING]: 'Closing',
-    [ReadyState.CLOSED]: 'Closed',
-    [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
+    [ReadyState.CONNECTING]: ConnectionStatus.Connecting,
+    [ReadyState.OPEN]: ConnectionStatus.Open,
+    [ReadyState.CLOSING]: ConnectionStatus.Closing,
+    [ReadyState.CLOSED]: ConnectionStatus.Closed,
+    [ReadyState.UNINSTANTIATED]: ConnectionStatus.Uninstantiated,
   }[readyState];
 
   return (
     <div>
-      <p>The WebSocket is currently {connectionStatus} (Connected to: {socketUrl})</p>
-      {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
+      <ConnectionStatusInfo connectionStatus={connectionStatus} socketUrl={socketUrl}></ConnectionStatusInfo>
+      {
+        lastMessage && <span>Last message: {lastMessage.data}</span>
+      }
       <InstrumentPairSelector onClickCallback={onInstrumentPairChange}></InstrumentPairSelector>
-      <h2>Latest trades for instrument pair: {getInstrumentPairLabel(currentInstrumentPair)}</h2>
+      <h2>
+        Latest trades for instrument pair: {getInstrumentPairLabel(currentInstrumentPair)}
+      </h2>
       <TradesTable trades={messageHistory}></TradesTable>
     </div>
   );

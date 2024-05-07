@@ -1,10 +1,9 @@
-import React from 'react';
-import TradeItem from './trade-item';
-import { RawTradeItem } from './types';
+import TradeItem from '../TradeItem/trade-item';
+import { RawTradeItem } from '../types';
 
 export default function TradesTable(props: { trades: RawTradeItem[] }) {
     return (
-        <div id="trades-table" role="trades-table">
+        <div id="trades-table" data-testid="trades-table">
             <div id="trades-table-header" className="table-row">
                 <div className="table-header-cell table-cell table-cell-trade-id" data-testid="table-header-cell-trade-id">
                     <label>Trade ID</label>

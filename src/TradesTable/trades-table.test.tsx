@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import TradesTable from './trades-table';
-import { mockRawTrades } from "../__mocks__/mock-trades.js";
+import { mockRawTrades } from "../../__mocks__/mock-trades.js";
 
 describe("Trades table", () => {
     beforeEach(() => {
@@ -9,7 +9,7 @@ describe("Trades table", () => {
 
     describe("When component loads", () => {
         test("Should render", () => {
-            expect(screen.getByRole("trades-table")).toBeInTheDocument();
+            expect(screen.getByTestId("trades-table")).toBeInTheDocument();
         })
     })
     describe("Header cells", () => {
@@ -45,7 +45,7 @@ describe("Trades table", () => {
 
     describe("Trade items", () => {
         test("Should render", () => {
-            const tradeItems = screen.getAllByRole("trade-item");
+            const tradeItems = screen.getAllByTestId("trade-item");
             expect(tradeItems[0]).toBeInTheDocument();
             expect(tradeItems[1]).toBeInTheDocument();
         })

@@ -1,1 +1,0 @@
-export { useWebSocket as default } from 'react-use-websocket';
