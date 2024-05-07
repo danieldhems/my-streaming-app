@@ -1,17 +1,19 @@
 As you can see I've used Create React App for this demo as it seemed like a good boilerplate to get started with. I hope my work is satisfactory.
 
-### Closing thoughts
+/**
+*
+* ### Closing thoughts
+*
+* I had a look in to charting and tried to give React Chart 2 a
+* spin, and it was plotting... something... but I couldn't establish
+* anything meaningful so I scrapped what little I had.
 
-I had a look in to charting and tried to give React Chart 2 a
-spin, and it was plotting... something... but I couldn't establish
-anything meaningful so I scrapped what little I had.
-
-If I had more time I'd gladly add integration tests and make the UI a
-bit prettier, but I've already spent all weekend on this so I hope this
-is a good enough illustration of what I can do and how I approach
-things.
-
-
+* If I had more time I'd gladly add integration tests and make the UI a
+* bit prettier, but I've already spent all weekend on this so I hope this
+* is a good enough illustration of what I can do and how I approach
+* things.
+* 
+*/
 
 # Getting Started with Create React App
 
